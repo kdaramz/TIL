@@ -7,7 +7,12 @@
 
 
 
+### ETC
+
+* [알쓸신잡](./ETC/Miscellaneous.md)
+
 ### Swift
 
 * [고차 함수](./Swift/HighOrderFunction.md)
 * [제네릭](./Swift/Generics.md)
+
