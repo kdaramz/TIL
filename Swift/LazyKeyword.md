@@ -57,7 +57,7 @@ class MemoListCell: UITableViewCell {
 ```swift
 // B
 class MemoListCell {
-    lazy var titleLabel: UILabel = { // Error
+    lazy var titleLabel = { // Error
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = .preferredFont(forTextStyle: .headline)
