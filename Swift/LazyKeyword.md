@@ -82,3 +82,6 @@ lazy var titleLabel = { () -> UILabel in
     }()
 ```
 
+### Reference
+* [Swift Programming Language](https://docs.swift.org/swift-book/LanguageGuide/Properties.html)
+* [lazy variables](https://baked-corn.tistory.com/45)
