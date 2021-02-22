@@ -9,6 +9,7 @@
 ## 프로그래밍
 
 * 콜백 함수: 다른 코드의 인수로서 넘겨주는 실행 가능한 코드를 말한다. 처음에는 Swift에서 제공하는 클로저 문법과 콜백이 비슷해서 무슨 차이일까 생각을 했었는데, Swift의 클로저에는 많은 의의가 있는데, 많은 용도 중에서 클로저를 콜백으로 사용하기도 한다라고 들었다. 즉, 프레임워크에서 지원해주는 여러가지 메서드 중, completionHandler 라는 인자 레이블을 볼 수 있는데, 이 부분은 콜백으로 사용하는 부분이라고 생각하면 된다.
+* Thread Safe: 여러 스레드에서 하나의 값을 접근 또는 변경해도 값이 보장된다는 것을 의미하며, 프로그램 실행의 문제가 없음을 뜻한다.
 
 
 
@@ -23,3 +24,23 @@ label.font = UIFont.systemFont(ofSize: 10)
 label.font = UIFont(name: "폰트 이름", size: 10)
 ```
 
+* UIColor 를 Hex Value로 사용하기
+
+  ```swift
+  // How to set
+  extension UIColor {
+      convenience init(hex: Int, alpha: CGFloat = 1.0) {
+          self.init(
+          	red: CGFloat((hex & 0xFF0000) >> 16) / 255.0,
+              green: CGFloat((hex & 0x00FF00) >> 8) / 255.0,
+              blue: CGFloat((hex & 0x0000FF) > 0) / 255.0,
+              alpha: alpha
+          )
+      }
+  }
+  
+  // How to use
+  let green: UIColor = UIColor(hex: 0x1faf46)
+  let red: UIColor = UIColor(hex: 0xfe5960)
+  let blue: UIColor = UIColor(hex: 0x0079d5)
+  ```
