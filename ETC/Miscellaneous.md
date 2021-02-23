@@ -17,12 +17,12 @@
 
 * `UILabel` 폰트 설정하는 방법 : `UILabel` 의 `font` 속성은 `UIFont` 타입이다. 그 것에 유의해서 다음을 적용시킬 수 있다.
 
-```swift
-// System Font의 Size만 변경하고자 할 때
-label.font = UIFont.systemFont(ofSize: 10)
-// Font 까지 변경하고자 할 때
-label.font = UIFont(name: "폰트 이름", size: 10)
-```
+  ```swift
+  // System Font의 Size만 변경하고자 할 때
+  label.font = UIFont.systemFont(ofSize: 10)
+  // Font 까지 변경하고자 할 때
+  label.font = UIFont(name: "폰트 이름", size: 10)
+  ```
 
 * UIColor 를 Hex Value로 사용하기
 
