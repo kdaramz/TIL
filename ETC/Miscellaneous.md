@@ -44,3 +44,14 @@
   let red: UIColor = UIColor(hex: 0xfe5960)
   let blue: UIColor = UIColor(hex: 0x0079d5)
   ```
+
+* `print` 자체의 로직으로 인해 앱 배포 시 포함되어 있다면 성능에 좋지 않은 영향을 준다. print를 지워주거나 `#if` 와 `#endif` preprocessor를 사용하는 것이 좋다고 한다.
+
+  ```swift
+  func aFunction() {
+      // Code...
+      #if DEBUG // 디버그 시에만 사용된다.
+      print(message)
+      #endif
+  }
+  ```
