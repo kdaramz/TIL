@@ -55,3 +55,5 @@
       #endif
   }
   ```
+
+* iOS에는 Project Deployment Target과 Target Deployment Target이 있는데, 보통 Project Deployment Target의 설정으로 끝낼 수 있지만, Target Deployment Target을 설정했을 경우, Project Deployment Target 설정을 오버라이딩한다. 즉, Target Deployment Target이 최소 지원 버전이 된다.
