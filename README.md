@@ -10,6 +10,7 @@
 ### ETC
 
 * [알쓸신잡](./ETC/Miscellaneous.md)
+* [License](./ETC/License.md)
 
 ### Swift
 
