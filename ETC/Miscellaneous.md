@@ -61,3 +61,5 @@
 * iOS에는 Project Deployment Target과 Target Deployment Target이 있는데, 보통 Project Deployment Target의 설정으로 끝낼 수 있지만, Target Deployment Target을 설정했을 경우, Project Deployment Target 설정을 오버라이딩한다. 즉, Target Deployment Target이 최소 지원 버전이 된다.
 
 * `isEmpty` 가 `count == 0` 보다 퍼포먼스 면에서 뛰어나다. `isEmpty` 는 O(1)이고, `count == 0` 은 O(N) 이다.
+
+* `@IBDesignable` 키워드를 선언하여 앱을 실행시키지 않고도 Storyboard에서 변경 및 적용 사항을 확인할 수 있다.
