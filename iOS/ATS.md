@@ -4,17 +4,24 @@
 
 * URLSession 클래스를 사용하는 URL 로딩 시스템으로 이루어진 모든 HTTP 연결을 HTTPS로 강제화
 
-* ATS를 해제하기 전 서버 보안을 개선할 방법을 찾으라네...  없으면 보안이 저하된다고...**
-
 * iOS 9.0, macOS 10.11 SDK 부터 기본적으로 동작하는데, iOS 10.0, macOS 10.12 이상부터 조금 바뀜
 * 개발할 때 이전 SDK에 연결하면 앱이 실행되는 운영 체제 버전에 관계없이 ATS가 비활성화
-* [Provide Justification for Exceptions](https://developer.apple.com/documentation/security/preventing_insecure_network_connections#3138036)에 제시된 대로 ATS 관련 키 값을 `YES`로 설정했을 때 앱 스토어에 보안에 대해 검증하지 않으면 승인이 나지 않을 수 있음
+* [Provide Justification for Exceptions](https://developer.apple.com/documentation/security/preventing_insecure_network_connections#3138036)에 제시된 대로 ATS 관련 키 값을 `YES`로 설정했을 때 앱 스토어에 보안에 대해 검증하지 않으면 리젝당할 수 있음
 * `Network` 프레임워크 또는 `CFNetwork` 프레임워크 같은 하위 수준 네트워킹 인터페이스에 대한 앱 호출에는 미적용
 
-## 간단한 방법 (위험)
+## 모든 ATS 옵션 해제
 
 1. `Info.plist`에서` App Transport Security Settings` 키를 추가
-2. `Allow Arbitrary Loads` 를 `YES` 로 설정 (꼭 해당 키가 아니더라도 원하는 보안 설정 키 추가)
+2. 하위에 `Allow Arbitrary Loads` 를 추가하고  `YES` 로 설정
+
+## 특정 도메인만 옵션 해제
+
+1. `Info.plist`에서` App Transport Security Settings` 키를 추가
+2. 하위에 `Allow Arbitrary Loads` 를 추가하고  `NO` 로 설정
+3. `Allow Arbitrary Loads` 와 동일한 레벨에 `NSExceptionDomains` 추가
+4. 하위에 ATS 해제를 허용할 도메인 추가 후, 해당 도메인 하위에 `NSIncludesSubDomains` 와 `NSExceptionAllowsInSecureHTTPLoads` 값을 `YES` 로 설정하여 추가
+
+<img width="611" alt="스크린샷 2021-05-18 오후 4 24 26" src="https://user-images.githubusercontent.com/73573732/118609259-891a3a00-b7f5-11eb-896e-4d9ecb537014.png">
 
 ## 종류
 
