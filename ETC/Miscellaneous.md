@@ -63,3 +63,16 @@
 * `isEmpty` 가 `count == 0` 보다 퍼포먼스 면에서 뛰어나다. `isEmpty` 는 O(1)이고, `count == 0` 은 O(N) 이다.
 
 * `@IBDesignable` 키워드를 선언하여 앱을 실행시키지 않고도 Storyboard에서 변경 및 적용 사항을 확인할 수 있다.
+
+
+
+## Xcode
+
+- Console에 시뮬레이터 디버깅 로그가 뜰 때
+
+  - Xcode 8 부터 `OS_ACTIVITY_MODE` 가 추가되었는데, 시뮬레이터에서 출력하는 로그들이라고 한다. 로그들 때문에 제대로 된 로깅을 확인할 수 없을 때는 다음처럼 해결할 수 있다.
+
+    `Edit Scheme` > `Run` > `Environment Variables` > `OS_ACTIVITY_MODE` 키 추가 > `disable` 설정
+
+     <img width="1904" alt="스크린샷 2021-05-22 오후 7 37 56" src="https://user-images.githubusercontent.com/73573732/119223605-580f7180-bb35-11eb-8ed3-b6fabd805f43.png">
+
