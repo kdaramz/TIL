@@ -9,9 +9,9 @@
 
 ## Before We Go
 
-Swift의 `String` 타입은 `Foundation` 의 `NSString` 클래스와 브릿징됩니다.
+Swift의 `String` 타입은 `Foundation` 의 `NSString` 클래스와 브릿징된다.
 
->   여기서 브릿징이란, Objective-C의 `Foundation` 타입에 대응되는 타입들이 있는데, Swift와 Objective-C에서 서로의 API를 아무조건 없이 사용할 수 있습니다.
+>   여기서 브릿징이란, Objective-C의 `Foundation` 타입에 대응되는 타입들이 있는데, Swift와 Objective-C에서 서로의 API를 아무조건 없이 사용할 수 있다.
 >
 >   예를들어 다음 코드를 보면
 >
@@ -22,7 +22,7 @@ Swift의 `String` 타입은 `Foundation` 의 `NSString` 클래스와 브릿징�
 >   let greetingObjCWithExclamationMark: String = greetingObjC.appending("!")
 >   ```
 >
->   이렇게 `NSString` 타입의 메서드가 매개변수 및 결과 값을 `NSString`이 아닌, `String` 을 사용하는 것이 가능하다는 이야기 입니다. 자세한 것은 [Bridging]()을 참고해주세요.
+>   이렇게 `NSString` 타입의 메서드가 매개변수 및 결과 값을 `NSString`이 아닌, `String` 을 사용하는 것이 가능하다. 자세한 것은 [Bridging]()을 참고.
 
 
 
@@ -225,6 +225,38 @@ word += "\u{301}"    // e가 é로 대체됨 (확장 자소 클러스터 참고)
 print("the number of characters in \(word) is \(word.count)")
 // Prints "the number of characters in café is 4"
 ```
+
+>   확장 자소 클러스터는 여러 유니코드 스칼라로 구성될 수 있다. 같은 문자의 다른 표현은 저장하는데 필요한 메모리의 양이 다를 수 있다. 그래서 Swift의 문자는 문자열 표현 내에서 각각 동일한 양의 메모리를 차지하지 않는다. 즉, 확장 자소 클러스터의 경계를 결정하기 위해 문자열을 반복하지 않고는 문자열의 문자 수를 계산할 수 없다. 특히 긴 문자열 값으로 작업하는 경우 해당 문자열의 문자를 결정하려면 `count` 속성이 전체 문자열의 유니코드 스칼라를 반복해야한다.
+>
+>   <kbd>내용 추가하기</kbd>
+>
+>   `count` 프로퍼티가 반환하는 문자의 수는 동일한 문자를 포함하는 `NSString` 의 `length` 프로퍼티와 항상 일치하는 것은 아니다. `NSString` 의 길이는 문자열 내의 유니코드 확장 자소 클러스터 수가 아니라 문자열의 UTF-16 표현 내의 16비트 코드 단위 수를 기반으로한다. 아래 코드 예시를 보자.
+>
+>   ```swift
+>   class StringLengthOfSameString {
+>       let swift: String = "\u{1112}\u{1161}\u{11AB}" // ㅎ, ㅏ ,ㄴ
+>       let objc: NSString = "\u{1112}\u{1161}\u{11AB}" // ㅎ, ㅏ, ㄴ
+>   }
+>   
+>   let instance: MemorySizeOfSameString = MemorySizeOfSameString()
+>   
+>   print(instance.swift.count) // 1
+>   print(instance.objc.length) // 3
+>   ```
+>
+>   `String`은 유니코드 스칼라 방식을 따른다. 그렇기 때문에 확장 자소 클러스터에 의해서 문자열은 `한` 으로 구성되며, 길이는 1이 된다. 하지만 `NSString`은 UTF-16 방식을 따르기 때문에 `ㅎ`, `ㅏ`, `ㄴ`으로 구성되어 길이는 3이 된다.
+
+
+
+## Accessing and Modifying a String
+
+메서드와 프로퍼티 또는 `.`을 통해 문자열에 접근할 수 있다.
+
+각 문자열은 각 문자 위치에 해당하는 `String.Index` 가 있다.
+
+>   ### Swift의 문자열에서 정수 인덱스로의 접근을 허용하지 않는 이유
+>
+>   `String`은 유니코드 스칼라 방식을 따르는데, 확장 자소 클러스터라는 개념이 있다. 그렇기에 한 문자 또는 문자열에 있는 개별 단어가 동일한 메모리 양을 가지는 것이 아니다. 즉, "한국의 국보 1호는 숭례문이다" 라는 문자열에서 단일 스칼라로 표현되는 부분도 있고, 여러 스칼라가 모여 하나의 문자를 표현하는 경우도 있다. 문자를 확인하려면 해당 문자열의 시작 또는 끝에서 문자열을 반복해야하는데, 위의 특성 때문에 정수로는 정확한 위치를 알 수 없다고 한다.
 
 
 
