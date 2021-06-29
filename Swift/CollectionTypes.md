@@ -6,7 +6,7 @@
 
 Swift는 값 컬렉션을 저장하기 위해 배열, 집합 및 딕셔너리으로 알려진 세 가지 기본 컬렉션 타입을 제공한다. 배열은 정렬 된 값 모음입니다. 집합은 순서가 지정되지 않은 고유한 값의 모음입니다. 딕셔너리는 순서가 지정되지 않은 키-값의 모음이다.
 
-![../_images/CollectionTypes_intro_2x.png](https://docs.swift.org/swift-book/_images/CollectionTypes_intro_2x.png)
+<img src="https://docs.swift.org/swift-book/_images/CollectionTypes_intro_2x.png" alt="../_images/CollectionTypes_intro_2x.png" style="zoom:50%;"/>
 
 Swift에서 배열, 집합 그리고 딕셔너리는 저장할 수 있는 키와 값의 타입에 대해 항상 명확하다. 즉, 실수로 잘못된 타입의 값을 컬렉션에 삽입할 수 없음을 뜻한다. 또 컬렉션을 검색할 때, 값의 타입이 어떤 타입인지 정확하게 알 수 있다.
 
@@ -225,6 +225,201 @@ for (index, value) in shoppingList.enumerated() {
 // Item 5: Bananas
 ```
 
+`for-in` 에 대한 자세한 정보는 [For-In Loops](https://docs.swift.org/swift-book/LanguageGuide/ControlFlow.html#ID121) 문서를 참고하라.
 
+
+
+## Sets
+
+집합은 같은 타입의 고유한 값을 순서없이 저장한다. 그렇기에 항목 순서가 중요하지 않거나, 항목의 중복이 필요한 경우 배열 대신 집합을 사용할 수 있다.
+
+>   #### Note
+>
+>   Swift의 집합은 `Foundation` 의 `NSSet` 클래스와 브릿징된다.
+>
+>   `Foundation`과 `Cocoa`에서의 집합 사용에 대해 더 자세한 정보는 [해당 문서](https://developer.apple.com/documentation/swift/set#2845530)를 참고하자.
+
+집합에 저장되기 위해서는 `hashalbe` 해야 하는데, 즉, 타입 자체가 해시 값을 계산하는 방법을 제공해야만 한다는 뜻이다. 해시 값은 타입과 값이 같다고 비교되는 모든 객체에 대해 동일한 `Int` 값을 가진다. 따라서 `a == b` 인 경우 `a`의 해시 값은 `b`의 해시 값과 같다.
+
+Swift의 모든 기본 유형(`String`, `Int`, `Double`, `Bool` 등)은 기본적으로 `Hashable` 하며, 집합의 값 또는 딕셔너리의 키로 사용할 수 있다. 열거형의 연관 값을 제외한 항목 값([Enumerations](https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html)을 참고)도 기본적으로 `Hashable`하다.
+
+>   #### Note
+>
+>   커스텀 타입이 `Swift Standard Library`의 `Hashable` 프로토콜을 준수하도록 설정하면, 해당 타입을 집합의 값과 딕셔너리의 키로 사용할 수 있다. `hash(into:)` 필수 메서드 구현에 대한 정보는 [Hashable](https://developer.apple.com/documentation/swift/hashable) 문서를 참고하라. 프로토콜 준수에 관한 자세한 내용은 [Protocols](https://docs.swift.org/swift-book/LanguageGuide/Protocols.html) 문서를 참고하라.
+
+집합은 `Set<Element>`로 사용하며, `Element`는 저장을 허용할 타입이다. 배열과는 다르게, 단축 문법이 없다.
+
+이니셜라이저를 이용하여 특정 타입의 빈 집합을 만들 수 있다.
+
+```swift
+var letters = Set<Character>()
+print("letters is of type Set<Character> with \(letters.count) items.")
+// Prints "letters is of type Set<Character> with 0 items."
+```
+
+>   #### Note
+>
+>   이니셜라이저 문법에 의해서 변수 `letter`는 집합으로 추론된다.
+
+또는 함수 인자나 변수 타입이 선언된 변수 또는 상수와 같이, 이미 문맥에서 타입에 대한 정보를 제공하는 경우에는 빈 배열 리터럴을 사용해서 빈 집합을 생성할 수 있다.
+
+```swift
+letters.insert("a")
+// letters now contains 1 value of type Character
+letters = []
+// letters is now an empty set, but is still of type Set<Character>
+```
+
+하나 이상의 값을 집합으로 사용하는 간단한 방법은, 배열 리터럴을 사용하여 집합을  초기화하는 것이다.
+
+아래는 문자열 값을 저장하기 위해 `favoriteGenres` 라는 집합을 만든 예제이다.
+
+```swift
+var favoriteGenres: Set<String> = ["Rock", "Classical", "Hip hop"]
+// favoriteGenres has been initialized with three initial items
+```
+
+`favoriteGenres` 변수는 문자열 타입의 값을 저장하는 `Set<String>` 으로 사용된다. 저장 타입을 문자열 타입으로 지정했기 때문에 문자열 값만 저장할 수 있다. 여기서 `favoriteGenres` 집합은 배열 리터럴 내에 사용된 3개의 문자열 값(`"Rock", "Classical", "Hip hop"`)으로 초기화된다.
+
+>   #### Note
+>
+>   `favoriteGenres` 집합은 아래 예제에서 항목이 추가 및 제거되기 때문에 상수 대신 변수로 선언했다.
+
+집합은 배열 리터럴만 가지고는 타입 추론이 불가능하므로 `Set` 키워드를 통해 명시적으로 선언해야 한다. 그러나 Swift의 타입 추론으로 인해 특정 타입의 값만 포함하는 배열 리터럴로 초기화하는 경우, 제네릭 문법을 사용하여 선언할 필요가 없다.
+
+```swift
+var favoriteGenres: Set = ["Rock", "Classical", "Hip hop"]
+```
+
+배열 리터럴의 모든 값이 동일한 타입이기 때문에 Swift는 `favoriteGenres`의 타입이  `Set<String>` 이라고 추론할 수 있다.
+
+메서드와 프로퍼티를 통해 집합에 엑세스하고 수정할 수 있다.
+
+읽지 전용 프로퍼티인 `count`를 사용해서 집합에 포함된 항목 수를 확인할 수 있다.
+
+```swift
+print("I have \(favoriteGenres.count) favorite music genres.")
+// Prints "I have 3 favorite music genres."
+```
+
+`isEmpty` 프로퍼티를 통해 `count` 프로퍼티가 0과 같은지 확인하는 작업을 간단하게 할 수 있다.
+
+```swift
+if favoriteGenres.isEmpty {
+    print("As far as music goes, I'm not picky.")
+} else {
+    print("I have particular music preferences.")
+}
+// Prints "I have particular music preferences."
+```
+
+`insert(_:)` 메서드를 호출해서 집합에 새 항목을 추가할 수 있다.
+
+```swift
+favoriteGenres.insert("Jazz")
+// favoriteGenres now contains 4 items
+```
+
+`remove(_:)` 메서드를 호출하여 집합에서 항목을 제거할 수 있다. 제거 항목이 집합에 포함되어 있는 경우 제거된 값을 반환하고 , 집합에 없는 항목인 경우는 `nil` 을 반환한다. 또, 집합의 모든 항목을 `removeAll()` 메서드를 호출해 제거할 수 있다.
+
+```swift
+if let removedGenre = favoriteGenres.remove("Rock") {
+    print("\(removedGenre)? I'm over it.")
+} else {
+    print("I never much cared for that.")
+}
+// Prints "Rock? I'm over it."
+```
+
+집합에 특정 항목이 포함됐는지 확인하려면 `contains(_:)` 메서드를 사용하라.
+
+```swift
+if favoriteGenres.contains("Funk") {
+    print("I get up on the good foot.")
+} else {
+    print("It's too funky in here.")
+}
+// Prints "It's too funky in here."
+```
+
+`for-in` 구문을 통해 집합의 값을 반복할 수 있다.
+
+```swift
+for genre in favoriteGenres {
+    print("\(genre)")
+}
+// Classical
+// Jazz
+// Hip hop
+```
+
+`for-in` 에 대한 자세한 정보는 [For-In Loops](https://docs.swift.org/swift-book/LanguageGuide/ControlFlow.html#ID121) 문서를 참고하라.
+
+Swift의 집합은 순서가 없다. 집합의 값을 특정 순서로 반복하려면 `<`를 사용하여 정렬시킨(오름차순)  `sorted()` 메서드를 호출하라.
+
+```swift
+for genre in favoriteGenres.sorted() {
+    print("\(genre)")
+}
+// Classical
+// Hip hop
+// Jazz
+```
+
+
+
+## Performing Set Operations
+
+기본적인 집합의 작업을 효율적으로 수행할 수 있다.
+
+아래 그림은 a와 b, 두 집합의 연산 결과를 나타낸다.
+
+<img src="https://docs.swift.org/swift-book/_images/setVennDiagram_2x.png" alt="../_images/setVennDiagram_2x.png" style="zoom:50%;"/>
+
+
+
+-   두 집합에 공통된 값만 존재하는 새로운 집합을 만들려면 `intersection(_:)` 메서드를 호출하라. (교집합)
+-   공통적인 값이 아닌, 각각의 집합에만 있는 값들만 존재하는 새로운 집합을 만들려면 `symmetricDifference(_:)` 메서드를 호출하라. (대칭차집합)
+-   두 집합의 모든 값이 존재하는 새로운 집합을 만들려면 `union(_:)` 메서드를 호출하라. (교집합)
+-   특정 집합에서 공통 값을 제외한 나머지 값만 가진 새로운 집합을 만들려면 `subtracting(_:)` 메서드를 호출하라. (a에 대한 b의 차집합)
+
+```swift
+let oddDigits: Set = [1, 3, 5, 7, 9]
+let evenDigits: Set = [0, 2, 4, 6, 8]
+let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+
+oddDigits.union(evenDigits).sorted()
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+oddDigits.intersection(evenDigits).sorted()
+// []
+oddDigits.subtracting(singleDigitPrimeNumbers).sorted()
+// [1, 9]
+oddDigits.symmetricDifference(singleDigitPrimeNumbers).sorted()
+// [1, 2, 9]
+```
+
+아래는 3개의 집합(a, b 및 c)간의 관계를 나타내는 그림이다. 집합 a는 b의 모든 요소를 포함하므로 집합 b의 상위 집합이다. 반대로 b의 모든 요소도 a에 포함되므로 집합 b는 집합 a의 하위 집합이다. 집합 b와 집합 c는 공통 요소를 공유하지 않기 때문에 서로소 집합이라고 한다.
+
+<img src="https://docs.swift.org/swift-book/_images/setEulerDiagram_2x.png" alt="../_images/setEulerDiagram_2x.png" style="zoom:50%;" />
+
+-   `==` 연산자를 사용하여 두 집합에 동일한 값이 모두 포함되어 있는지 확인할 수 있다.
+-   `isSubset(of:)` 메서드를 호출하여 인자로 넘겨준 집합이 호출한 집합의 하위 집합인지 확인할 수 있다.
+-   `isSuperset(of:)` 메서드를 호출하여 인자로 넘겨준 집합이 호출한 집합의 상위 집합인지 확인할 수 있다.
+-   `isStrictSubset(of:)` 또는 `isStrictSuperset(of:)` 메서드를 호출하여 인자로 넘겨준 집합이 호출한 집합과 동일함을 제외한 하위 또는 상위 집합인지 확인할 수 있다.
+-   `isDisjoint(with:)` 메서드를 호출하여 두 집합이 서로소 집합인지 확인할 수 있다.
+
+```swift
+let houseAnimals: Set = ["🐶", "🐱"]
+let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
+let cityAnimals: Set = ["🐦", "🐭"]
+
+houseAnimals.isSubset(of: farmAnimals)
+// true
+farmAnimals.isSuperset(of: houseAnimals)
+// true
+farmAnimals.isDisjoint(with: cityAnimals)
+// true
+```
 
 <kbd>진행 중</kbd>
+
