@@ -74,7 +74,7 @@ var sixDoubles = threeDoubles + anotherThreeDoubles
 // sixDoubles is inferred as [Double], and equals [0.0, 0.0, 0.0, 2.5, 2.5, 2.5]
 ```
 
-또 배열 리터럴을 사용해서 배열을 초기화 할 수 있다. 이는 하나 이상의 값을 배열 컬렉션으로 사용하는 간단한 방법이다. 배열 리터럴은 대괄호 내부에 쉼표로 값을 구분하여 작성된다.
+하나 이상의 값을 배열로 사용하는 간단한 방법은, 배열 리터럴을 사용하여 배열을  초기화하는 것이다. 배열 리터럴은 대괄호 내부에 쉼표로 값을 구분하여 작성된다.
 
 ```swift
 var shoppingList: [String] = ["Eggs", "Milk"]
@@ -421,5 +421,184 @@ farmAnimals.isDisjoint(with: cityAnimals)
 // true
 ```
 
-<kbd>진행 중</kbd>
 
+
+## Dictionaries
+
+딕셔너리는 순서가 정의되지 않은, 동일한 타입의 키들과 그에 관련된 동일한 타입의 값들을 저장한다. 각각의 값은 딕셔너리 내부에 있는 값들을 식별하는 역할을 하는 고유한 키와 연결된다. 배열의 항목과 달리 딕셔너리 항목에는 순서가 없다. 실제 사전을 통해 특정 단어에 대한 정의를 찾는 것처럼, 식별자를 기반으로 값을 조회할 때 딕셔너리를 사용한다.
+
+>   #### Note
+>
+>   Swift의 딕셔너리는 `Foundation`의 `NSDictionary` 클래스와 브릿징된다.
+>
+>   `Foundation`과 `Cocoa`에서의 배열 사용에 대해 더 자세한 정보는 [해당 문서](https://developer.apple.com/documentation/swift/dictionary#2846239)를 참고하자.
+
+Swift의 딕셔너리는 `Dictionary<Key, Value>`로 사용할 수 있으며, 여기서  `Key`는 딕셔너리 키로 사용할 수 있는 타입이고, `Value`는 딕셔너리가 해당 키에 값으로 저장하는 타입이다.
+
+>   #### Note
+>
+>   딕셔너리의 `Key`에 들어갈 타입은 집합의 값과 마찬가지로 `Hashable` 프로토콜을 준수해야한다.
+
+또한 `[Key: Value]` 형식으로 딕셔너리를 축약하여 쓸 수 있다. 두 형식은 기능적으로 동일하지만 축약형이 선호되고, 해당 문서에서도 축약형으로 나타내도록 하겠다.
+
+배열과 마찬가지로, 이니셜라이저를 통해 특정 타입의 빈 딕셔너리를 생성할 수 있다.
+
+```swift
+var namesOfIntegers: [Int: String] = [:]
+// namesOfIntegers is an empty [Int: String] dictionary
+```
+
+이 예시에서는 사람이 읽을 수 있는, 정수 값으로 된 `[Int: String]` 타입의 빈 딕셔너리를 만든다. 키는 `Int` 타입이고, 값은 `String` 타입이다.
+
+이미 해당 타입에 대한 정보를 제공하는 경우, 딕셔너리 리터럴인 `[:]`을 통해 빈 딕셔너리를 생성할 수 있다.
+
+```swift
+namesOfIntegers[16] = "sixteen"
+// namesOfIntegers now contains 1 key-value pair
+namesOfIntegers = [:]
+// namesOfIntegers is once again an empty dictionary of type [Int: String]
+```
+
+또한 앞서 봤던 배열 리터럴과 비슷한 문법을 가진 딕셔너리 리터럴을 통해 딕셔너리를 초기화 할 수 있다. 하나 이상의 값을 딕셔너리로 사용하는 간단한 방법은, 딕셔너리 리터럴을 사용하여 딕셔너리를  초기화하는 것이다.
+
+키-값 쌍은 키와 값의 조합이다. 딕셔너리 리터럴에서 키와 값은 콜론으로 구분된다. 각각의 키-값 쌍은 콤마로 구분되고 항목을 대괄호로 감싸고 있는 형태로 작성된다.
+
+​	[`key 1`: `value 1`, `key 2`: `value 2`, `key 3`: `value 3`]
+
+아래는 국제 공항의 이름을 저장할 딕셔너리를 만드는 예제이다. 해당 딕셔너리에서 키는 세 글자로 된 국제 항공 운송 협회 코드이며, 값은 공항 이름이다.
+
+```swift
+var airports: [String: String] = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+```
+
+`airport` 딕셔너리는 `[String: String]` 타입으로 선언된다. 즉, 키와 값 모두 문자열 타입인 딕셔너리를 의미한다.
+
+>   #### Note
+>
+>   `airport` 딕셔너리는 아래 예제에서 더 많은 공항이 추가되기 때문에 상수가 아닌 변수로 선언했다.
+
+`airport` 딕셔너리는 두 개의 키-값 쌍을 포함하는 딕셔너리 리터럴로 초기화된다. 첫 번째 쌍에는 `"YYZ"` 키와 `"Toronto Pearson"` 값이 있다. 두 번째 쌍에는 `"DUB"` 키와 `"Dublin"` 값이 있다.
+
+이 딕셔너리 리터럴은 두 쌍의 `String: String` 타입을 포함한다. 이 키-값 타입은 `airport` 변수의 타입과 일치하므로 딕셔너리 리터럴을 두 개의 초기 항목으로 `airport` 딕셔너리를 초기화하는 방법으로 할당할 수 있다.
+
+```swift
+var airports = ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+```
+
+리터럴의 모든 키가 서로 동일한 타입이고, 마찬가지로 모든 값이 서로 동일한 타입이기 때문에 Swift는 `[String: String]`이 해당 딕셔너리에 사용할 올바른 타입이라고 추론할 수 있다.
+
+해당 메서드나 프로퍼티 또는 서브스크립트 문법을 통해 딕셔너리에 접근하고 수정할 수 있다.
+
+배열과 마찬가지로, 읽기 전용 프로퍼티인 `count`를 통해 딕셔너리의 항목 수를 알 수 있다.
+
+```swift
+print("The airports dictionary contains \(airports.count) items.")
+// Prints "The airports dictionary contains 2 items."
+```
+
+부울 타입인 `isEmpty` 프로퍼티를 사용하여 `count` 프로퍼티가 0과 같을 때의 조건을 간단하게 확인할 수 있다.
+
+```swift
+if airports.isEmpty {
+    print("The airports dictionary is empty.")
+} else {
+    print("The airports dictionary isn't empty.")
+}
+// Prints "The airports dictionary isn't empty."
+```
+
+서브스크립트 문법을 사용하여 딕셔너리에 새 항목을 추가할 수 있다. 적절한 타입의 새로운 키를 서브스크립트로 넘겨주고, 적절한 타입의 새 값을 할당하여 사용한다.
+
+```swift
+airports["LHR"] = "London"
+// the airports dictionary now contains 3 items
+```
+
+또한, 서브크스립트 문법을 사용해서 특정 키에 관련된 값을 변경할 수 있다.
+
+```swift
+airports["LHR"] = "London Heathrow"
+// the value for "LHR" has been changed to "London Heathrow"
+```
+
+서브스크립트 대신 딕셔너리의 `updateValue(_:forKey:)` 메서드를 사용하여 특정 키에 대한 값을 설정하거나 업데이트할 수 있다. 위의 서브스크립트를 활용한 예제와 같이, `updateValue(_:forKey:)` 메서드는 키가 없는 경우 값을 새로 설정하거나 해당 키가 존재하는 경우 값을 업데이트한다. 그러나 서브스크립트와 다른 점은 `updateValue(_:forKey:)` 메서드는 업데이트를 수행한 후, 이전 값을 반환한다는 것이다. 이를 통해 업데이트가 발생했는지 여부를 확인할 수 있다.
+
+`updateValue(_:forKey:)` 메서는 딕셔너리 값 타입에 대해 옵셔널 타입을 반환한다. 예를 들어, 문자열 값을 저장하는 딕셔너리의 경우 메서드는 `String?` 또는 옵셔널 `String` 타입의 값을 반환한다. 해당 옵셔널 값은 키가 존재 여부에 따라 이전 값과 `nil`을 함께 포함한다.
+
+```swift
+if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB") {
+    print("The old value for DUB was \(oldValue).")
+}
+// Prints "The old value for DUB was Dublin."
+```
+
+서브스크립트 문법을 사용하여 특정 키에 대한 값을 검색할 수 있다. 값이 없는 키를 요청할 수 있으므로 딕셔너리의 서브스크립트는 딕셔너리 값 타입의 옵셔널 타입을 반환한다. 딕셔너리가 요청 키를 포함하고 있다면, 서브스크립트는 해당 키에 연결된 값의 옵셔널 타입을 반환한다. 요청 키가 없으면 서브스크립트는 `nil`을 반환한다.
+
+```swift
+if let airportName = airports["DUB"] {
+    print("The name of the airport is \(airportName).")
+} else {
+    print("That airport isn't in the airports dictionary.")
+}
+// Prints "The name of the airport is Dublin Airport."
+```
+
+딕셔너리로부터 키-값 쌍을 제거할 때, 해당 키의 서브스크립트로 `nil`을 할당하여 제거할 수 있다:
+
+```swift
+airports["APL"] = "Apple International"
+// "Apple International" isn't the real airport for APL, so delete it
+airports["APL"] = nil
+// APL has now been removed from the dictionary
+```
+
+또는, `removeValue(forKey:)` 메서드를 사용하여 딕셔너리에서 키-값 쌍을 제거한다. 이 메서드는 키-값 쌍이 있는 경우 제거하고, 제거된 값을 반환하거나 값이 없는 경우 `nil`을 반환한다:
+
+```swift
+if let removedValue = airports.removeValue(forKey: "DUB") {
+    print("The removed airport's name is \(removedValue).")
+} else {
+    print("The airports dictionary doesn't contain a value for DUB.")
+}
+// Prints "The removed airport's name is Dublin Airport."
+```
+
+`for-in` 구문을 통해 딕셔너리의 키-값 쌍을 반복할 수 있다. 딕셔너리의 각 항목은 (키, 값) 튜플로 반환되며 반복의 일부로 튜플의 멤버를 임시 상수 또는 변수로 분해할 수 있다.
+
+```swift
+for (airportCode, airportName) in airports {
+    print("\(airportCode): \(airportName)")
+}
+// LHR: London Heathrow
+// YYZ: Toronto Pearson
+```
+
+`for-in` 에 대한 자세한 정보는 [For-In Loops](https://docs.swift.org/swift-book/LanguageGuide/ControlFlow.html#ID121) 문서를 참고하라.
+
+`keys` 및 `values` 프로퍼티에 접근하여 딕셔너리의 키 또는 값을 검색할 수 있다:
+
+```swift
+for airportCode in airports.keys {
+    print("Airport code: \(airportCode)")
+}
+// Airport code: LHR
+// Airport code: YYZ
+
+for airportName in airports.values {
+    print("Airport name: \(airportName)")
+}
+// Airport name: London Heathrow
+// Airport name: Toronto Pearson
+```
+
+배열 인스턴스를 사용하는 API에서 딕셔너리의 키 또는 값을 사용해야하는 경우 `keys` 또는 `values` 프로퍼티로 새 배열을 초기화할 수 있다.
+
+```swift
+let airportCodes = [String](airports.keys)
+// airportCodes is ["LHR", "YYZ"]
+
+let airportNames = [String](airports.values)
+// airportNames is ["London Heathrow", "Toronto Pearson"]
+```
+
+Swift의 딕셔너리는 정의도니 순서가 없다. 특정 순서로 딕셔너리의 키 또는 값을 반복하려면 해당 `keys` 또는 `values` 프로퍼티에서 `sorted()` 메서드를 사용하라.
