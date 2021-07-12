@@ -17,6 +17,7 @@
 
 * [ATS](./iOS/ATS.md)
 * [contentMode](./iOS/contentMode.md)
+* [UITableViewCell Changes in iOS 14](./iOS/UITableViewCellChangesIniOS14.md)
 
 ### Swift
 
