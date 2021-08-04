@@ -35,3 +35,5 @@
 ### Accessibility
 
 - [UIAccessibility](./Accessibility/UIAccessibility.md)
+- [Dynamic Type](./Accessibility/DynamicType.md)
+
