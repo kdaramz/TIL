@@ -76,3 +76,5 @@
 
      <img width="1904" alt="스크린샷 2021-05-22 오후 7 37 56" src="https://user-images.githubusercontent.com/73573732/119223605-580f7180-bb35-11eb-8ed3-b6fabd805f43.png">
 
+-   커스텀 TableViewCell을 Xib파일로 만들 때 주의해야할 점
+    -   TableViewCell에는 contentView가 존재한다. TableViewCell에 커스텀 클래스명을 넣어야하는데 실수로 contentView에 설정하면 TableViewCell이 깨져보인다.
