@@ -21,6 +21,7 @@
 * [Customizing the Separator Appearance](./iOS/CustomizingtheSeparatorAppearance.md)
 * [CGRect](./iOS/CGRect.md)
 * [Relation between view and layer](./iOS/RelationBetweenView&Layer.md)
+* [frame vs bounds](./iOS/frame&bounds.md)
 
 ### Swift
 
