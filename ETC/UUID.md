@@ -1,8 +1,9 @@
 # UUID
 
-> Vapor를 사용하여 Server를 만들다보니 ID의 기본 타입이 UUID인 것을 확인할 수 있었는데, UUID는 무엇이며 어떻게 사용하는지 궁금해져서 공부해봤습니다.
-
-<br/>
+> ## Reference
+>
+> 1. [Apple Developer Document - UUID](https://developer.apple.com/documentation/foundation/uuid)
+> 2. [Clint Jang님 미디엄 - UUID](https://medium.com/@jang.wangsu/ios-swift-uuid%EB%8A%94-%EC%96%B4%EB%96%A4-%EC%9B%90%EB%A6%AC%EB%A1%9C-%EB%A7%8C%EB%93%A4%EC%96%B4%EC%A7%80%EB%8A%94-%EA%B2%83%EC%9D%BC%EA%B9%8C-22ec9ff4e792)
 
 
 
@@ -55,8 +56,3 @@ UUID는 36개 문자(32개 문자와 4개의 `-`)로 이루어져 있으며, 하
 5. `Version 5`: SHA-1 해시를 통해 UUID를 생성하는 버전이라고 합니다.
 
 각 프로그래밍 언어마다 UUID 버전을 달리 사용한다고 합니다! (자바는 여러 버전 다중 지원이 된다는...) 아무튼 결론은, UUID든 NSUUID든 iOS에서 UUID는 Version 4의 난수 형식으로의 생성 방법을 채택하고 있다는 것이 되겠네요!
-
-## Reference
-
-* [Apple Developer Document - UUID](https://developer.apple.com/documentation/foundation/uuid)
-* [Clint Jang님 미디엄 - UUID](https://medium.com/@jang.wangsu/ios-swift-uuid%EB%8A%94-%EC%96%B4%EB%96%A4-%EC%9B%90%EB%A6%AC%EB%A1%9C-%EB%A7%8C%EB%93%A4%EC%96%B4%EC%A7%80%EB%8A%94-%EA%B2%83%EC%9D%BC%EA%B9%8C-22ec9ff4e792)
