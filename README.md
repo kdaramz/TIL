@@ -24,6 +24,10 @@
     - [ATS](./iOS/Network/ATS.md)
     - [URL Loading System](./iOS/Network/URLLoadingSystem.md)
 
+- **Location**
+
+    - [Choosing the Location Services Authorization to Request](./iOS/Location/ChoosingTheLocationServicesAuthToReq.md)
+
 - [contentMode](./iOS/contentMode.md)
 
 - [UITableViewCell Changes in iOS 14](./iOS/UITableViewCellChangesIniOS14.md)
