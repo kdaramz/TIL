@@ -2,7 +2,7 @@
 
 >   ## Reference
 >
->   1.  Apple Developer Documentation - [SeparatorStyle]()
+>   1.  Apple Developer Documentation - [SeparatorStyle](https://developer.apple.com/documentation/uikit/uitableview/1614909-separatorstyle)
 >   2.  Apple Developer Documentation - [SeparatorInset](https://developer.apple.com/documentation/uikit/uitableview/1614851-separatorinset)
 >   3.  Apple Developer Documentation - [SeparatorInsetReference](https://developer.apple.com/documentation/uikit/uitableview/separatorinsetreference)
 >   4.  Apple Developer Documentation - [readableContentGuide](https://developer.apple.com/documentation/uikit/uiview/1622644-readablecontentguide/)
@@ -10,9 +10,11 @@
 >   6.  Apple Developer Documentation - [SeparatorColor](https://developer.apple.com/documentation/uikit/uitableview/1614984-separatorcolor)
 >   7.  StackOverFlow - [What is UITableView separatorEffect property for?](https://stackoverflow.com/questions/26090913/what-is-uitableview-separatoreffect-property-for)
 
+<br/>
 
 
-## SeparatorStyle
+
+## separatorStyle
 
 `tableView(_:cellForRowAt:)` 에서 반환되는 셀의 구분선 스타일을 설정한다.
 
@@ -24,7 +26,7 @@
 
 
 
-## SeparatorInset
+## separatorInset
 
 셀 구분선의 인셋 값이다.
 
@@ -46,7 +48,7 @@ separatorInset = UIEdgeInset(top: 0, left: 10, bottom: 0, right: 10)
 
 
 
-## SeparatorInsetReference
+## separatorInsetReference
 
 구분선 인셋을 설정할 때, 어떤 방법을 기준으로 잡을지 설정하는 값이다. 해당 프로퍼티는 다음 값을 포함한다.
 
@@ -67,12 +69,12 @@ iOS 11.0 이전에는 `readableContentGuide` 를 기준으로 설정했기 때�
 
 보통 `readableContentGuide`는 화면이 넓은 iPad에서 테이블 뷰 컨텐츠를 사용자가 조금 더 보기 쉽게 하기위함인 것 같다.
 
-## SeparatorColor
+## separatorColor
 
 셀 구분선의 색상을 설정하는 값이며, 기본 값은 회색이다.
 
 
 
-## SeparatorEffect
+## separatorEffect
 
 `UIBlurEffect`를 통한 흐림처리 또는 여러 효과에서 구분선에도 효과를 줄 때 사용하는 속성인 듯하다.
