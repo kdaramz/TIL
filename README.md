@@ -27,6 +27,7 @@
 - **Location**
 
     - [Choosing the Location Services Authorization to Request](./iOS/Location/ChoosingTheLocationServicesAuthToReq.md)
+    - [Desired Accuracy Constatns](./iOS/Location/DesiredAccuracyConstants.md)
 
 - [contentMode](./iOS/contentMode.md)
 
