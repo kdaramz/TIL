@@ -15,7 +15,7 @@
 
 ### Git
 
-- [git commit 시, 발생하는 vi 버그](./Git/GitCommitWithViBug.md)
+- [git commit 시, 발생하는 vi 버그](./Git/CommitBugWithVim.md)
 
 ### iOS
 
