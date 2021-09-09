@@ -3,6 +3,7 @@
 > ## Reference
 >
 > 1. NSHipster - [애플리케이션의 민감한 정보를 보호하는 방법](https://nshipster.co.kr/secrets/)
+> 2. Hong3의 개발블로그 - [iOS - 환경변수 분리하기](https://hongdonghyun.github.io/2020/06/iOS-환경변수-분리하기/)
 
 <br/>
 
