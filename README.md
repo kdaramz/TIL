@@ -12,7 +12,7 @@
 * [알쓸신잡](./ETC/Miscellaneous.md)
 * [License](./ETC/License.md)
 * [UUID](./ETC/UUID.md)
-* [git commit 시, 발생하는 vi 버그](./ETC/GitCommitWithViBug.md)
+* [git commit 시, 발생하는 vi 버그](./ETC/CommitBugWithVim.md)
 
 ### iOS
 
