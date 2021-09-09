@@ -17,11 +17,15 @@ $ git commit
 error: There was a problem with the editor 'vi'.
 ```
 
+<br/>
+
 
 
 ## 원인
 
 vi 에디터 자체의 버그라고 한다.
+
+<br/>
 
 
 
